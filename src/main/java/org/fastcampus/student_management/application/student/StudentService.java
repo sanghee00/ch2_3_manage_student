@@ -26,18 +26,23 @@ public class StudentService {
 
   public void activateStudent(String name) {
     // TODO: 과제 구현 부분
-    toggleStudentActivation(name);
+    toggleStudentActivation(name, true);
   }
 
   public void deactivateStudent(String name) {
     // TODO: 과제 구현 부분
-    toggleStudentActivation(name);
+    toggleStudentActivation(name, false);
   }
 
-  private void toggleStudentActivation(String name) {
+  public void toggleStudentActivation(String name, Boolean activate) {
     Optional<Student> studentOptional = studentRepository.findByName(name);
-    studentOptional.ifPresent(student ->
-            studentRepository.save(new Student(student.getName(), student.getAge(), student.getAddress(), !student.isActivate()))
-    );
+    studentOptional.ifPresent(student -> {
+      if (student.isActivate() == activate) {
+        return;
+      }
+      studentRepository.save(new Student(student.getName(), student.getAge(), student.getAddress(), !student.isActivate()));
+    });
   }
+
+
 }

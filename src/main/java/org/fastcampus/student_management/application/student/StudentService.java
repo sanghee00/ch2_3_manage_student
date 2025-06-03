@@ -4,8 +4,6 @@ import org.fastcampus.student_management.application.student.dto.StudentInfoDto;
 import org.fastcampus.student_management.domain.Student;
 import org.fastcampus.student_management.repo.StudentRepository;
 
-import java.util.Optional;
-
 public class StudentService {
 
   private final StudentRepository studentRepository;
@@ -24,7 +22,7 @@ public class StudentService {
         .orElseThrow(() -> new IllegalArgumentException("해당하는 학생이 없습니다."));
   }
 
-  public void activateStudent(String name) {
+  /*public void activateStudent(String name) {
     // TODO: 과제 구현 부분
     toggleStudentActivation(name, true);
   }
@@ -47,6 +45,19 @@ public class StudentService {
         !student.isActivate()
       ));
     });
+  }*/
+
+  // 내 코드는 findByName을 해서 찾았는데 강사는 getStudent을 사용해서 domain 계층에다가 함수를 구현
+  public void activateStudent(String name) {
+    // TODO: 과제 구현 부분
+    Student student = getStudent(name);
+    student.activated();
+  }
+
+  public void deactivateStudent(String name) {
+    // TODO: 과제 구현 부분
+    Student student = getStudent(name);
+    student.deactivated();
   }
 
 }

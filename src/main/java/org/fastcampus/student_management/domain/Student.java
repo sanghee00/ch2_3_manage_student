@@ -18,7 +18,7 @@ public class Student {
     this.activated = true;
   }
 
-  public Student(String name, int age, String address, Boolean activated) {
+  /*public Student(String name, int age, String address, Boolean activated) {
     if (name == null || name.isEmpty()) {
       throw new IllegalArgumentException("이름은 필수 입력값입니다.");
     }
@@ -27,6 +27,22 @@ public class Student {
     this.age = age;
     this.address = address;
     this.activated = activated;
+  }*/
+
+  public void activated() {
+    if (this.activated) {
+      throw new IllegalArgumentException();
+    }
+
+    this.activated = true;
+  }
+
+  public void deactivated() {
+    if (!this.activated) {
+      throw new IllegalArgumentException();
+    }
+
+    this.activated = false;
   }
 
   public String getName() {

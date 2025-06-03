@@ -4,6 +4,8 @@ import org.fastcampus.student_management.application.student.dto.StudentInfoDto;
 import org.fastcampus.student_management.domain.Student;
 import org.fastcampus.student_management.repo.StudentRepository;
 
+import java.util.Optional;
+
 public class StudentService {
 
   private final StudentRepository studentRepository;
@@ -24,9 +26,18 @@ public class StudentService {
 
   public void activateStudent(String name) {
     // TODO: 과제 구현 부분
+    toggleStudentActivation(name);
   }
 
   public void deactivateStudent(String name) {
     // TODO: 과제 구현 부분
+    toggleStudentActivation(name);
+  }
+
+  private void toggleStudentActivation(String name) {
+    Optional<Student> studentOptional = studentRepository.findByName(name);
+    studentOptional.ifPresent(student ->
+            studentRepository.save(new Student(student.getName(), student.getAge(), student.getAddress(), !student.isActivate()))
+    );
   }
 }

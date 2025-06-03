@@ -18,6 +18,17 @@ public class Student {
     this.activated = true;
   }
 
+  public Student(String name, int age, String address, Boolean activated) {
+    if (name == null || name.isEmpty()) {
+      throw new IllegalArgumentException("이름은 필수 입력값입니다.");
+    }
+
+    this.name = name;
+    this.age = age;
+    this.address = address;
+    this.activated = activated;
+  }
+
   public String getName() {
     return name;
   }

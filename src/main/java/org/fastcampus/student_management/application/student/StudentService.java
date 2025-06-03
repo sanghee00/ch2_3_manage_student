@@ -26,15 +26,15 @@ public class StudentService {
 
   public void activateStudent(String name) {
     // TODO: 과제 구현 부분
-    toggleStudentActivation(name, true);
+    toggleStudentState(name, true);
   }
 
   public void deactivateStudent(String name) {
     // TODO: 과제 구현 부분
-    toggleStudentActivation(name, false);
+    toggleStudentState(name, false);
   }
 
-  public void toggleStudentActivation(String name, Boolean activate) {
+  private void toggleStudentState(String name, Boolean activate) {
     Optional<Student> studentOptional = studentRepository.findByName(name);
     studentOptional.ifPresent(student -> {
       if (student.isActivate() == activate) {

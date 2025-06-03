@@ -39,7 +39,13 @@ public class StudentService {
       if (student.isActivate() == activate) {
         return;
       }
-      studentRepository.save(new Student(student.getName(), student.getAge(), student.getAddress(), !student.isActivate()));
+
+      studentRepository.save(new Student(
+        student.getName(),
+        student.getAge(),
+        student.getAddress(),
+        !student.isActivate()
+      ));
     });
   }
 

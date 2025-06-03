@@ -21,7 +21,13 @@ public class CourseService {
 
   public void registerCourse(CourseInfoDto courseInfoDto) {
     Student student = studentService.getStudent(courseInfoDto.getStudentName());
-    Course course = new Course(student, courseInfoDto.getCourseName(), courseInfoDto.getFee(), courseInfoDto.getDayOfWeek(), courseInfoDto.getCourseTime());
+    Course course = new Course(
+      student,
+      courseInfoDto.getCourseName(),
+      courseInfoDto.getFee(),
+      courseInfoDto.getDayOfWeek(),
+      courseInfoDto.getCourseTime()
+    );
     courseRepository.save(course);
   }
 
@@ -30,7 +36,6 @@ public class CourseService {
     List<Course> courseDayOfWeek = courseRepository.getCourseDayOfWeek(dayOfWeek);
     List<CourseInfoDto> results = new ArrayList<>();
 
-    // TODO: 비활성화 상태인 학생 필터링
     for (Course course : courseDayOfWeek) {
       String studentName = course.getStudentName();
       Student student = studentService.getStudent(studentName);

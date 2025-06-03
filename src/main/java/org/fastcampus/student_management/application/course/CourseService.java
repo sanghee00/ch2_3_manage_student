@@ -30,8 +30,13 @@ public class CourseService {
     List<Course> courseDayOfWeek = courseRepository.getCourseDayOfWeek(dayOfWeek);
     List<CourseInfoDto> results = new ArrayList<>();
 
+    // TODO: 비활성화 상태인 학생 필터링
     for (Course course : courseDayOfWeek) {
-      results.add(new CourseInfoDto(course));
+      String studentName = course.getStudentName();
+      Student student = studentService.getStudent(studentName);
+      if (student.isActivate()) {
+        results.add(new CourseInfoDto(course));
+      }
     }
 
     return new ArrayList<>(results);
